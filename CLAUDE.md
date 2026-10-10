@@ -557,7 +557,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done
 
 Setup:
 - ✅ Cleanup & global styles
-- ⬜ Structure & layout
+- ✅ Structure & layout
 - ⬜ Auth & API layer
 
 | # | Page | Route | Folder | API doc | Status |
@@ -588,7 +588,7 @@ notification history. Full list: `docs/api/admin.README.txt`.
 
 Update this list whenever a component is added to `src/components/` (name — purpose — props).
 
-- _None yet._
+- `PageHeader` — page title row: title + optional description at the start, action buttons at the end; stacks on mobile — props: `title`, `description?`, `children?` (action buttons)
 
 ## 20. Domain notes
 
