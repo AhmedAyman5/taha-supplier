@@ -556,7 +556,7 @@ read it before building a new page.
 Legend: ⬜ not started · 🟨 in progress · ✅ done
 
 Setup:
-- ⬜ Cleanup & global styles
+- ✅ Cleanup & global styles
 - ⬜ Structure & layout
 - ⬜ Auth & API layer
 
