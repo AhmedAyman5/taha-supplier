@@ -566,7 +566,7 @@ Setup:
 | # | Page | Route | Folder | API doc | Status |
 |---|---|---|---|---|---|
 | 0 | تسجيل الدخول | /login | Login | admin.auth.txt | ✅ |
-| 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ⬜ reference page |
+| 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ✅ reference page |
 | 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ⬜ |
 | 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ⬜ |
 | 4 | المنتجات | /products | Products | admin.product.txt | ⬜ |
@@ -592,6 +592,16 @@ notification history. Full list: `docs/api/admin.README.txt`.
 Update this list whenever a component is added to `src/components/` (name — purpose — props).
 
 - `PageHeader` — page title row: title + optional description at the start, action buttons at the end; stacks on mobile — props: `title`, `description?`, `children?` (action buttons)
+- `Button` — the §11.4 button recipes; `type` defaults to `"button"` — props: `variant?` (`'primary'` default · `'secondary'` · `'danger'`) + normal button props (`type`, `disabled`, `onClick`, `form`, `aria-label`, `children`…)
+- `TextInput` — styled `<input>` (input recipe), red border on error — props: `hasError?` + normal input props
+- `FormField` — label above the input, hint / error (`text-xs`) below; the label wraps the input — props: `label`, `error?`, `hint?`, `children` (the input)
+- `Modal` — overlay + panel with title, close button, body and optional footer; overlay click and Escape call `onClose`; the parent renders it conditionally — props: `title`, `onClose`, `children`, `footer?`
+- `ConfirmDialog` — confirm before an action, built on `Modal` (buttons: confirm + «إلغاء»; can't close while loading) — props: `title`, `message`, `confirmLabel`, `variant?` (`'danger'` default · `'primary'`), `isLoading`, `onConfirm`, `onCancel`
+- `LoadingState` — card with «جاري تحميل البيانات...» — no props
+- `ErrorState` — card with the error + «إعادة المحاولة» button — props: `message`, `onRetry`
+- `EmptyState` — card with an empty-list sentence + optional action — props: `message`, `children?` (e.g. the add button)
+- `Badge` — status pill — props: `variant?` (`'success'` · `'warning'` · `'error'` · `'info'` · `'neutral'` default), `children`
+- `ImageInput` — image picker with preview (new file, else the current image); validates type (jpeg/jpg/png/webp) and size BEFORE calling `onChange`, with its own Arabic errors — props: `label`, `currentImageUrl?`, `maxSizeMB?` (default 10; brand logos 5), `onChange(file)`, `error?`
 
 ## 20. Domain notes
 
