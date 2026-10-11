@@ -567,7 +567,7 @@ Setup:
 |---|---|---|---|---|---|
 | 0 | تسجيل الدخول | /login | Login | admin.auth.txt | ✅ |
 | 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ✅ reference page |
-| 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ⬜ |
+| 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ✅ |
 | 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ⬜ |
 | 4 | المنتجات | /products | Products | admin.product.txt | ⬜ |
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ⬜ |
@@ -594,6 +594,7 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - `PageHeader` — page title row: title + optional description at the start, action buttons at the end; stacks on mobile — props: `title`, `description?`, `children?` (action buttons)
 - `Button` — the §11.4 button recipes; `type` defaults to `"button"` — props: `variant?` (`'primary'` default · `'secondary'` · `'danger'`) + normal button props (`type`, `disabled`, `onClick`, `form`, `aria-label`, `children`…)
 - `TextInput` — styled `<input>` (input recipe), red border on error — props: `hasError?` + normal input props
+- `Select` — styled `<select>` (same recipe as TextInput), red border on error — props: `hasError?`, `children` (the `<option>`s) + normal select props
 - `FormField` — label above the input, hint / error (`text-xs`) below; the label wraps the input — props: `label`, `error?`, `hint?`, `children` (the input)
 - `Modal` — overlay + panel with title, close button, body and optional footer; overlay click and Escape call `onClose`; the parent renders it conditionally — props: `title`, `onClose`, `children`, `footer?`
 - `ConfirmDialog` — confirm before an action, built on `Modal` (buttons: confirm + «إلغاء»; can't close while loading) — props: `title`, `message`, `confirmLabel`, `variant?` (`'danger'` default · `'primary'`), `isLoading`, `onConfirm`, `onCancel`
