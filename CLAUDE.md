@@ -376,6 +376,9 @@ response shapes, token formats or business rules. Missing or unclear → STOP an
 - Pagination `{ items, page, per_page, next_page, last_page, total }` (per_page ≤ 100) exists ONLY for products,
   orders and customers. Every other list is a plain array → search / filter client-side.
 - Authentication lives only in `src/services/` (Bearer token + silent refresh).
+- Dev login bypass: `VITE_DEV_SKIP_LOGIN=true` in `.env` opens the dashboard without a session (dev server only,
+  via `DEV_SKIP_LOGIN` in `src/services/auth.js`). Set it to `false` once the backend is reachable. Never use it
+  anywhere except `ProtectedRoute`.
 - Every module doc has a **BUSINESS RULES / GOTCHAS** section — handle each one that affects the UI.
 
 ### 12.3 Uploads
@@ -558,11 +561,11 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done
 Setup:
 - ✅ Cleanup & global styles
 - ✅ Structure & layout
-- ⬜ Auth & API layer
+- ✅ Auth & API layer
 
 | # | Page | Route | Folder | API doc | Status |
 |---|---|---|---|---|---|
-| 0 | تسجيل الدخول | /login | Login | admin.auth.txt | ⬜ (auth task) |
+| 0 | تسجيل الدخول | /login | Login | admin.auth.txt | ✅ |
 | 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ⬜ reference page |
 | 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ⬜ |
 | 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ⬜ |
