@@ -568,7 +568,7 @@ Setup:
 | 0 | تسجيل الدخول | /login | Login | admin.auth.txt | ✅ |
 | 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ✅ reference page |
 | 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ✅ |
-| 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ⬜ |
+| 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ✅ |
 | 4 | المنتجات | /products | Products | admin.product.txt | ⬜ |
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ⬜ |
 | 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ⬜ |
