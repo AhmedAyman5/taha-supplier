@@ -487,6 +487,8 @@ No custom hooks, no global state for server data.
 - While saving: disable the submit button and show «جاري الحفظ...».
 - On success: close, toast «تم الحفظ بنجاح», bump `reloadKey`. On error: keep the form open with the Arabic
   message.
+- If a form's option lists (dropdown data) fail to load, still show the form with an inline warning +
+  «إعادة المحاولة» that reloads only the options; never replace the whole form with an error for that.
 - Create and edit share ONE form component. Small forms → modal. Large forms (products, banners) → a separate
   route (e.g. `/products/new`, `/products/:id/edit`).
 
@@ -569,7 +571,7 @@ Setup:
 | 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ✅ reference page |
 | 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ✅ |
 | 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ✅ |
-| 4 | المنتجات | /products | Products | admin.product.txt | 🟨 list done, form next |
+| 4 | المنتجات | /products | Products | admin.product.txt | ✅ |
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ✅ |
 | 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ⬜ |
 | 7 | البنرات | /banners | Banners | admin.banner.txt | ⬜ |
@@ -584,7 +586,7 @@ Setup:
 
 Customer approvals · sales representatives · inventory / stock · reports · staff accounts & permissions ·
 settings · an admin signup page · password reset · deleting orders or shipping zones · editing order items,
-prices or address · restoring a deleted brand · removing a product discount · review moderation ·
+prices or address · restoring a deleted brand · review moderation ·
 notification history. Full list: `docs/api/admin.README.txt`.
 
 ## 19. Shared components
@@ -593,7 +595,8 @@ Update this list whenever a component is added to `src/components/` (name — pu
 
 - `PageHeader` — page title row: title + optional description at the start, action buttons at the end; stacks on mobile — props: `title`, `description?`, `children?` (action buttons)
 - `Button` — the §11.4 button recipes; `type` defaults to `"button"` — props: `variant?` (`'primary'` default · `'secondary'` · `'danger'`) + normal button props (`type`, `disabled`, `onClick`, `form`, `aria-label`, `children`…)
-- `TextInput` — styled `<input>` (input recipe), red border on error — props: `hasError?` + normal input props
+- `TextInput` — styled `<input>` (input recipe), red border on error, grey background when disabled — props: `hasError?` + normal input props
+- `Textarea` — styled `<textarea>` (same recipe as TextInput), red border on error — props: `hasError?`, `rows?` (default 4) + normal textarea props
 - `Select` — styled `<select>` (same recipe as TextInput), red border on error — props: `hasError?`, `children` (the `<option>`s) + normal select props
 - `FormField` — label above the input, hint / error (`text-xs`) below; the label wraps the input — props: `label`, `error?`, `hint?`, `children` (the input)
 - `Modal` — overlay + panel with title, close button, body and optional footer; overlay click and Escape call `onClose`; the parent renders it conditionally — props: `title`, `onClose`, `children`, `footer?`
@@ -602,7 +605,7 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - `ErrorState` — card with the error + «إعادة المحاولة» button — props: `message`, `onRetry`
 - `EmptyState` — card with an empty-list sentence + optional action — props: `message`, `children?` (e.g. the add button)
 - `Badge` — status pill — props: `variant?` (`'success'` · `'warning'` · `'error'` · `'info'` · `'neutral'` default), `children`
-- `ImageInput` — image picker with preview (new file, else the current image); validates type (jpeg/jpg/png/webp) and size BEFORE calling `onChange`, with its own Arabic errors — props: `label`, `currentImageUrl?`, `maxSizeMB?` (default 10; brand logos 5), `onChange(file)`, `error?`
+- `ImageInput` — image picker with preview (new file, else the current image); validates type (jpeg/jpg/png/webp) and size BEFORE calling `onChange` (via `validateImageFile` in `src/utils/images.js`), with its own Arabic errors — props: `label`, `currentImageUrl?`, `maxSizeMB?` (default 10; brand logos 5), `onChange(file)`, `error?`
 - `Pagination` — «صفحة X من Y · الإجمالي: N» + «السابق» / «التالي» buttons (disabled at the edges); renders nothing when `lastPage <= 1` — props: `page`, `lastPage`, `total`, `onPageChange(page)`
 
 ## 20. Domain notes
@@ -613,3 +616,6 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - `payment_method`: CASH = pay on delivery · CARD = bank transfer with a receipt the admin approves or rejects.
 - Banners are offer sliders on the mobile home screen; each image has its own tap action.
 - Notifications are broadcast pushes to ALL app users — no history and no targeting.
+- Product discount removal: discount_price = "" clears it (backend update, overrides admin.product.txt §3).
+  Only removeProductDiscount() in products.api.js may send an empty discount_price, and only after the admin
+  checks «إزالة الخصم». updateProduct never sends it empty.

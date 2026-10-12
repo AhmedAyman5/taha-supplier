@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ImageIcon, Upload } from 'lucide-react'
-
-// The backend accepts only these types (shared upload rules in admin.general.txt)
-const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+import { validateImageFile } from '../utils/images'
 
 // Validates BEFORE calling onChange — the backend's own size message is wrong, so we never rely on it
 function ImageInput({ label, currentImageUrl, maxSizeMB = 10, onChange, error }) {
@@ -21,12 +19,9 @@ function ImageInput({ label, currentImageUrl, maxSizeMB = 10, onChange, error })
     event.target.value = '' // so picking the same file again still fires onChange
     if (!file) return
 
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      setFileError('نوع الصورة غير مدعوم، استخدم JPG أو PNG أو WEBP')
-      return
-    }
-    if (file.size > maxSizeMB * 1024 * 1024) {
-      setFileError(`حجم الصورة أكبر من ${maxSizeMB} ميجابايت`)
+    const validationError = validateImageFile(file, maxSizeMB)
+    if (validationError) {
+      setFileError(validationError)
       return
     }
 
