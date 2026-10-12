@@ -569,7 +569,7 @@ Setup:
 | 1 | الأقسام الرئيسية | /categories | Categories | admin.category.txt | ✅ reference page |
 | 2 | الأقسام الفرعية | /sub-categories | SubCategories | admin.sub-category.txt | ✅ |
 | 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ✅ |
-| 4 | المنتجات | /products | Products | admin.product.txt | ⬜ blocked — waiting for updated backend docs |
+| 4 | المنتجات | /products | Products | admin.product.txt | 🟨 list done, form next |
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ✅ |
 | 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ⬜ |
 | 7 | البنرات | /banners | Banners | admin.banner.txt | ⬜ |
@@ -603,6 +603,7 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - `EmptyState` — card with an empty-list sentence + optional action — props: `message`, `children?` (e.g. the add button)
 - `Badge` — status pill — props: `variant?` (`'success'` · `'warning'` · `'error'` · `'info'` · `'neutral'` default), `children`
 - `ImageInput` — image picker with preview (new file, else the current image); validates type (jpeg/jpg/png/webp) and size BEFORE calling `onChange`, with its own Arabic errors — props: `label`, `currentImageUrl?`, `maxSizeMB?` (default 10; brand logos 5), `onChange(file)`, `error?`
+- `Pagination` — «صفحة X من Y · الإجمالي: N» + «السابق» / «التالي» buttons (disabled at the edges); renders nothing when `lastPage <= 1` — props: `page`, `lastPage`, `total`, `onPageChange(page)`
 
 ## 20. Domain notes
 

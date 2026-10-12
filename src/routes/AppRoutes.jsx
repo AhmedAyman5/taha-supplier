@@ -10,6 +10,7 @@ import Login from '../pages/Login/Login'
 import NotFound from '../pages/NotFound/NotFound'
 import Notifications from '../pages/Notifications/Notifications'
 import Orders from '../pages/Orders/Orders'
+import ProductForm from '../pages/Products/ProductForm'
 import Products from '../pages/Products/Products'
 import ShippingZones from '../pages/ShippingZones/ShippingZones'
 import SubCategories from '../pages/SubCategories/SubCategories'
@@ -31,6 +32,8 @@ function AppRoutes() {
           <Route path="sub-categories" element={<SubCategories />} />
           <Route path="brands" element={<Brands />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/new" element={<ProductForm />} />
+          <Route path="products/:id/edit" element={<ProductForm />} />
           <Route path="banners" element={<Banners />} />
           <Route path="coupons" element={<Coupons />} />
           <Route path="notifications" element={<Notifications />} />
