@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router'
 import DashboardLayout from '../layouts/DashboardLayout/DashboardLayout'
+import BannerForm from '../pages/Banners/BannerForm'
 import Banners from '../pages/Banners/Banners'
 import Brands from '../pages/Brands/Brands'
 import Categories from '../pages/Categories/Categories'
@@ -35,6 +36,8 @@ function AppRoutes() {
           <Route path="products/new" element={<ProductForm />} />
           <Route path="products/:id/edit" element={<ProductForm />} />
           <Route path="banners" element={<Banners />} />
+          <Route path="banners/new" element={<BannerForm />} />
+          <Route path="banners/:id/edit" element={<BannerForm />} />
           <Route path="coupons" element={<Coupons />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="shipping-zones" element={<ShippingZones />} />

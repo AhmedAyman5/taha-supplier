@@ -576,7 +576,7 @@ Setup:
 | 4 | المنتجات | /products | Products | admin.product.txt | ✅ |
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ✅ |
 | 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ✅ |
-| 7 | البنرات | /banners | Banners | admin.banner.txt | ⬜ |
+| 7 | البنرات | /banners | Banners | admin.banner.txt | ✅ |
 | 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ⬜ |
 | 9 | العملاء | /customers | Customers | admin.customers.txt | ⬜ |
 | 10 | الطلبات | /orders | Orders | admin.order.txt | ⬜ |
@@ -625,3 +625,8 @@ Update this list whenever a component is added to `src/components/` (name — pu
   min_order_amount, usage_limit, start_date, end_date — never null for code, discount_value, status;
   PATCH with an existing code returns 409. usage_limit = total uses across all customers (each customer
   can use a coupon once).
+- Banners: image_configs is a JSON string — with files: one config per file in the same order, no image_id;
+  without files: configs with image_id. Any file on PATCH replaces ALL images. Always send the full target
+  with click_action_type. An edit is saved in ONE PATCH (fields + images together, all-or-nothing). PAGE is
+  never offered. min_rating: offer 2 / 3 / 4 (backend accepts 1–5). Per-image add / delete endpoints are
+  coming (deleting the last image will return 409) — until then use 'replace all'.
