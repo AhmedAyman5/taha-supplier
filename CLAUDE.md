@@ -578,7 +578,7 @@ Setup:
 | 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ✅ |
 | 7 | البنرات | /banners | Banners | admin.banner.txt | ✅ |
 | 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ✅ |
-| 9 | العملاء | /customers | Customers | admin.customers.txt | ⬜ |
+| 9 | العملاء | /customers | Customers | admin.customers.txt | ✅ |
 | 10 | الطلبات | /orders | Orders | admin.order.txt | ⬜ |
 | 11 | الرئيسية | / | Dashboard | totals from orders / products / customers | ⬜ last |
 
@@ -615,6 +615,10 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - Catalog: Category → SubCategory → Product. Brand ↔ SubCategory links are managed from the Brands page only.
 - Orders are immutable snapshots: the admin can change only `status` and `payment_status`. The backend accepts
   ANY status change, so the UI enforces the workflow (defined with the Orders page in `src/constants/`).
+- Order status labels + badge colors: ORDER_STATUS in src/constants/orders.js (created with the Customers page).
+  Phones and emails are always shown inside <span dir="ltr">.
+- Customers: a ban needs a reason (UI max 200 characters); unbanning clears the reason permanently. A ban can
+  take up to 15 minutes to lock the customer out and never touches their orders.
 - `payment_method`: CASH = pay on delivery · CARD = bank transfer with a receipt the admin approves or rejects.
 - Banners are offer sliders on the mobile home screen; each image has its own tap action.
 - Notifications are broadcast pushes to ALL app users — no history and no targeting.

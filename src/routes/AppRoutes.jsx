@@ -5,6 +5,7 @@ import Banners from '../pages/Banners/Banners'
 import Brands from '../pages/Brands/Brands'
 import Categories from '../pages/Categories/Categories'
 import Coupons from '../pages/Coupons/Coupons'
+import CustomerDetails from '../pages/Customers/CustomerDetails'
 import Customers from '../pages/Customers/Customers'
 import Dashboard from '../pages/Dashboard/Dashboard'
 import Login from '../pages/Login/Login'
@@ -29,6 +30,7 @@ function AppRoutes() {
           <Route index element={<Dashboard />} />
           <Route path="orders" element={<Orders />} />
           <Route path="customers" element={<Customers />} />
+          <Route path="customers/:id" element={<CustomerDetails />} />
           <Route path="categories" element={<Categories />} />
           <Route path="sub-categories" element={<SubCategories />} />
           <Route path="brands" element={<Brands />} />
