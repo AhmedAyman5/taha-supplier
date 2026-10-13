@@ -400,7 +400,7 @@ uploading and show our own Arabic message (the backend's size message is wrong).
 | Category, sub-category | soft — `is_hidden = true` (reversible via PATCH) | «إخفاء» / «إظهار» |
 | Product | soft — `is_available = false` (reversible) | «إيقاف» / «تفعيل» |
 | Brand | soft, but there is NO restore through the API | «حذف» + warn it can't be undone |
-| Coupon | HARD delete (fails if ever redeemed) — prefer pausing | «إيقاف مؤقت» / «حذف» |
+| Coupon | no DELETE endpoint (removed by the backend) — PATCH status PAUSED / ACTIVE | «إيقاف مؤقت» / «تفعيل» |
 | Banner | HARD delete (rows + files) — or `is_active = false` | «إيقاف» / «حذف نهائي» |
 | Shipping zone | no DELETE endpoint — `is_active = false` | «إيقاف» / «تفعيل» |
 
@@ -573,7 +573,7 @@ Setup:
 | 3 | العلامات التجارية | /brands | Brands | admin.brand.txt | ✅ |
 | 4 | المنتجات | /products | Products | admin.product.txt | ✅ |
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ✅ |
-| 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ⬜ |
+| 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ✅ |
 | 7 | البنرات | /banners | Banners | admin.banner.txt | ⬜ |
 | 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ⬜ |
 | 9 | العملاء | /customers | Customers | admin.customers.txt | ⬜ |
@@ -587,7 +587,7 @@ Setup:
 Customer approvals · sales representatives · inventory / stock · reports · staff accounts & permissions ·
 settings · an admin signup page · password reset · deleting orders or shipping zones · editing order items,
 prices or address · restoring a deleted brand · review moderation ·
-notification history. Full list: `docs/api/admin.README.txt`.
+notification history · deleting coupons. Full list: `docs/api/admin.README.txt`.
 
 ## 19. Shared components
 
@@ -619,3 +619,7 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - Product discount removal: discount_price = "" clears it (backend update, overrides admin.product.txt §3).
   Only removeProductDiscount() in products.api.js may send an empty discount_price, and only after the admin
   checks «إزالة الخصم». updateProduct never sends it empty.
+- Coupons (backend update, overrides admin.coupon.txt): DELETE /coupon was removed; PATCH null clears
+  min_order_amount, usage_limit, start_date, end_date — never null for code, discount_value, status;
+  PATCH with an existing code returns 409. usage_limit = total uses across all customers (each customer
+  can use a coupon once).
