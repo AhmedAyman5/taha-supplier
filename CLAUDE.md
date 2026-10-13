@@ -577,7 +577,7 @@ Setup:
 | 5 | مناطق التوصيل | /shipping-zones | ShippingZones | admin.shipping-zone.txt | ✅ |
 | 6 | الكوبونات | /coupons | Coupons | admin.coupon.txt | ✅ |
 | 7 | البنرات | /banners | Banners | admin.banner.txt | ✅ |
-| 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ⬜ |
+| 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ✅ |
 | 9 | العملاء | /customers | Customers | admin.customers.txt | ⬜ |
 | 10 | الطلبات | /orders | Orders | admin.order.txt | ⬜ |
 | 11 | الرئيسية | / | Dashboard | totals from orders / products / customers | ⬜ last |
