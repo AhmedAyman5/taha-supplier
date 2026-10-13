@@ -170,8 +170,8 @@ function CouponForm({ coupon, coupons, onClose, onSaved }) {
           )}
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="grid content-start gap-1.5">
+        <div className="grid items-start gap-4 md:grid-cols-2">
+          <div className="grid gap-1.5">
             <FormField label="نسبة الخصم %" error={fieldErrors.discount_value}>
               <TextInput
                 name="discount_value"
@@ -209,8 +209,8 @@ function CouponForm({ coupon, coupons, onClose, onSaved }) {
           </FormField>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <FormField label="تاريخ البداية">
+        <div className="grid items-start gap-4 md:grid-cols-2">
+          <FormField label="تاريخ البداية" hint="اتركه فارغاً ليبدأ الكوبون فوراً">
             <TextInput name="start_date" type="date" value={values.start_date} onChange={handleChange} />
           </FormField>
 

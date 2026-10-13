@@ -312,6 +312,8 @@ Defined ONCE as `@theme` tokens in `src/index.css`. Tailwind turns each into cla
 - Page: `space-y-6` between blocks (header, filters, content). The layout already pads `<main>`.
 - Cards: `rounded-lg border border-border bg-surface` (content padding `p-5`; tables sit flush).
 - Forms: `grid gap-4` (two columns from `md:` when it helps); label above input with `gap-1.5`.
+  Two-column form grids use `items-start` so fields never stretch. A hint always stays under the field it
+  describes (never a full-row hint under two fields — in RTL it visually lands under the first field).
 - Radius: `rounded-md` buttons / inputs / nav items · `rounded-lg` cards / modals · `rounded-full` badges.
 - Depth: borders instead of shadows. `shadow-lg` only for modals and dropdowns.
 - Motion: `transition-colors duration-150` on interactive elements. No decorative animations.

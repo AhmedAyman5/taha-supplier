@@ -334,7 +334,7 @@ function ProductForm() {
             </div>
           )}
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid items-start gap-4 md:grid-cols-2">
             <FormField label="الاسم" error={fieldErrors.name}>
               <TextInput
                 name="name"
@@ -420,7 +420,7 @@ function ProductForm() {
 
         <section className={cardClass}>
           <h2 className={cardTitleClass}>السعر</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid items-start gap-4 md:grid-cols-2">
             <FormField label="السعر" error={fieldErrors.price} hint="بالجنيه المصري">
               <TextInput
                 name="price"
@@ -471,7 +471,7 @@ function ProductForm() {
 
         <section className={cardClass}>
           <h2 className={cardTitleClass}>الظهور في التطبيق</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid items-start gap-4 md:grid-cols-2">
             <div className="grid content-start gap-3">
               <label className={checkboxLabelClass}>
                 <input
