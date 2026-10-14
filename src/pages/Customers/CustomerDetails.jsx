@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import toast from 'react-hot-toast'
 import { ChevronRight } from 'lucide-react'
 import Badge from '../../components/Badge'
@@ -158,9 +158,14 @@ function CustomerDetails() {
         </section>
 
         <section className="rounded-lg border border-border bg-surface">
-          <div className="border-b border-border px-5 py-4">
-            <h2 className="text-base font-semibold text-text">آخر الطلبات</h2>
-            <p className="text-xs text-text-muted">يتم عرض آخر 10 طلبات فقط</p>
+          <div className="flex flex-col gap-3 border-b border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-base font-semibold text-text">آخر الطلبات</h2>
+              <p className="text-xs text-text-muted">يتم عرض آخر 10 طلبات فقط</p>
+            </div>
+            <Button variant="secondary" onClick={() => navigate(`/orders?user_id=${customer.id}`)}>
+              عرض كل طلبات العميل
+            </Button>
           </div>
           {customer.orders.length === 0 ? (
             <p className="p-5 text-center text-sm text-text-secondary">لا توجد طلبات لهذا العميل بعد</p>
@@ -183,7 +188,11 @@ function CustomerDetails() {
                       key={order.id}
                       className="border-b border-border-light text-sm last:border-b-0 hover:bg-background"
                     >
-                      <td className="px-4 py-3 font-medium text-text">#{order.id}</td>
+                      <td className="px-4 py-3 font-medium">
+                        <Link to={`/orders/${order.id}`} className="text-primary hover:underline">
+                          #{order.id}
+                        </Link>
+                      </td>
                       <td className="px-4 py-3">
                         <Badge variant={ORDER_STATUS[order.status].variant}>{ORDER_STATUS[order.status].label}</Badge>
                       </td>

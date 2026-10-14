@@ -579,7 +579,7 @@ Setup:
 | 7 | البنرات | /banners | Banners | admin.banner.txt | ✅ |
 | 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ✅ |
 | 9 | العملاء | /customers | Customers | admin.customers.txt | ✅ |
-| 10 | الطلبات | /orders | Orders | admin.order.txt | ⬜ |
+| 10 | الطلبات | /orders | Orders | admin.order.txt | ✅ |
 | 11 | الرئيسية | / | Dashboard | totals from orders / products / customers | ⬜ last |
 
 ---
@@ -599,7 +599,7 @@ Update this list whenever a component is added to `src/components/` (name — pu
 - `Button` — the §11.4 button recipes; `type` defaults to `"button"` — props: `variant?` (`'primary'` default · `'secondary'` · `'danger'`) + normal button props (`type`, `disabled`, `onClick`, `form`, `aria-label`, `children`…)
 - `TextInput` — styled `<input>` (input recipe), red border on error, grey background when disabled — props: `hasError?` + normal input props
 - `Textarea` — styled `<textarea>` (same recipe as TextInput), red border on error — props: `hasError?`, `rows?` (default 4) + normal textarea props
-- `Select` — styled `<select>` (same recipe as TextInput), red border on error — props: `hasError?`, `children` (the `<option>`s) + normal select props
+- `Select` — styled `<select>` (same recipe as TextInput), red border on error, grey background when disabled — props: `hasError?`, `children` (the `<option>`s) + normal select props
 - `FormField` — label above the input, hint / error (`text-xs`) below; the label wraps the input — props: `label`, `error?`, `hint?`, `children` (the input)
 - `Modal` — overlay + panel with title, close button, body and optional footer; overlay click and Escape call `onClose`; the parent renders it conditionally — props: `title`, `onClose`, `children`, `footer?`
 - `ConfirmDialog` — confirm before an action, built on `Modal` (buttons: confirm + «إلغاء»; can't close while loading) — props: `title`, `message`, `confirmLabel`, `variant?` (`'danger'` default · `'primary'`), `isLoading`, `onConfirm`, `onCancel`
@@ -634,3 +634,13 @@ Update this list whenever a component is added to `src/components/` (name — pu
   with click_action_type. An edit is saved in ONE PATCH (fields + images together, all-or-nothing). PAGE is
   never offered. min_rating: offer 2 / 3 / 4 (backend accepts 1–5). Per-image add / delete endpoints are
   coming (deleting the last image will return 409) — until then use 'replace all'.
+- Orders: from/to are full ISO timestamps of the local day start/end (inclusive). Receipts waiting for review =
+  CARD + payment PENDING + exclude_cancelled=1 (ignored if status is sent). Order filters live in the URL
+  (useSearchParams). PAYMENT_METHOD / PAYMENT_STATUS labels are in src/constants/orders.js.
+  A CARD order always has a receipt (mandatory at checkout), so CARD + payment PENDING always means waiting
+  for review — there is no "no receipt" state.
+- Order status workflow (UI-enforced): one step forward at a time PENDING→CONFIRMED→PROCESSING→SHIPPED→DELIVERED;
+  cancel (CANCELLED) allowed before DELIVERED; no going back; never send CLIENTCANCELLED; every change is confirmed.
+  Confirming a CARD order with an unapproved receipt shows a warning. The payment proof is fetched as a Blob.
+  PATCH /order/:id no longer returns 500 after saving (backend fix). Printing uses print: variants (the layout
+  has print overrides).

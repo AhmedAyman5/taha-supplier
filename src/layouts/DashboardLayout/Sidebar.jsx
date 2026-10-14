@@ -32,11 +32,11 @@ const navItems = [
 function Sidebar({ isOpen, onClose }) {
   return (
     <>
-      {isOpen && <div className="fixed inset-0 z-40 bg-black/30 lg:hidden" onClick={onClose} />}
+      {isOpen && <div className="fixed inset-0 z-40 bg-black/30 lg:hidden print:hidden" onClick={onClose} />}
 
       {/* RTL: the sidebar sits on the right, so translate-x-full hides it off the right edge */}
       <aside
-        className={`fixed top-0 start-0 z-50 flex h-screen w-[var(--sidebar-width)] flex-col border-e border-border bg-surface transition-transform duration-200 ease-in-out lg:static lg:z-auto lg:translate-x-0 ${
+        className={`fixed top-0 start-0 z-50 flex h-screen w-[var(--sidebar-width)] flex-col border-e border-border bg-surface transition-transform duration-200 ease-in-out lg:static lg:z-auto lg:translate-x-0 print:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

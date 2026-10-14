@@ -8,3 +8,16 @@ export const ORDER_STATUS = {
   CANCELLED: { label: 'ملغي من الإدارة', variant: 'error' },
   CLIENTCANCELLED: { label: 'ملغي من العميل', variant: 'error' },
 }
+
+export const PAYMENT_METHOD = {
+  CASH: 'عند الاستلام',
+  CARD: 'تحويل بنكي',
+}
+
+// Only meaningful for CARD orders. A CARD order always has a receipt (mandatory at checkout),
+// so CARD + PENDING always means "receipt waiting for review"
+export const PAYMENT_STATUS = {
+  PENDING: { label: 'إيصال قيد المراجعة', variant: 'warning' },
+  APPROVED: { label: 'الدفع مقبول', variant: 'success' },
+  REJECTED: { label: 'الإيصال مرفوض', variant: 'error' },
+}

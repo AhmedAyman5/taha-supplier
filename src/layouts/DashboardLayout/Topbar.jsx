@@ -13,7 +13,7 @@ function Topbar({ onMenuClick }) {
   }
 
   return (
-    <header className="flex h-[var(--topbar-height)] items-center justify-between gap-3 border-b border-border bg-surface px-5">
+    <header className="flex h-[var(--topbar-height)] items-center justify-between gap-3 border-b border-border bg-surface px-5 print:hidden">
       <div className="flex items-center gap-3">
         <button
           type="button"

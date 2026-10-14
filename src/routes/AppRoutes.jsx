@@ -11,6 +11,7 @@ import Dashboard from '../pages/Dashboard/Dashboard'
 import Login from '../pages/Login/Login'
 import NotFound from '../pages/NotFound/NotFound'
 import Notifications from '../pages/Notifications/Notifications'
+import OrderDetails from '../pages/Orders/OrderDetails'
 import Orders from '../pages/Orders/Orders'
 import ProductForm from '../pages/Products/ProductForm'
 import Products from '../pages/Products/Products'
@@ -29,6 +30,7 @@ function AppRoutes() {
         <Route element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="orders/:id" element={<OrderDetails />} />
           <Route path="customers" element={<Customers />} />
           <Route path="customers/:id" element={<CustomerDetails />} />
           <Route path="categories" element={<Categories />} />
