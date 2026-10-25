@@ -580,7 +580,9 @@ Setup:
 | 8 | الإشعارات | /notifications | Notifications | admin.notification.txt | ✅ |
 | 9 | العملاء | /customers | Customers | admin.customers.txt | ✅ |
 | 10 | الطلبات | /orders | Orders | admin.order.txt | ✅ |
-| 11 | الرئيسية | / | Dashboard | totals from orders / products / customers | ⬜ last |
+| 11 | الرئيسية | / | Dashboard | totals from orders / products / customers | ✅ |
+
+All pages are done.
 
 ---
 
